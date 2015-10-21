@@ -38,8 +38,8 @@ makeCacheMatrix <- function(data = matrix()) {
     }
     get    <- function() data
     setinv <- function(ans) imat <<- ans #method takes ans (answer) as 
-                                        #input and stores in parent function 
-                                        #environment
+                                         #input and stores in parent function 
+                                         #environment
     getinv <- function() imat
     cacheMatrix <- list(set = set, get = get,
                    setinv = setinv,
@@ -48,20 +48,20 @@ makeCacheMatrix <- function(data = matrix()) {
 }
 
 
-## cacheSolve returns a matrix that is the inverse of input matrix x
+## cacheSolve returns a matrix that is the inverse of input matrix cM
 ## If the inverse has already been calculated it is looked up in the cache and 
 ## returned, else the inverse is calculated and the answer is set in the cache
 
-cacheSolve <- function(x, ...) {
-    ## Return a matrix that is the inverse of 'x'
-    imat <- x$getinv() #get stored value of inverse from cacheMatrix object
+cacheSolve <- function(cM, ...) {
+    ## Return a matrix that is the inverse of 'cM' (the cacheMatrix object)
+    imat <- cM$getinv() #get stored value of inverse from cacheMatrix object
     if(!is.null(imat)) { #if stored value is not NULL, return
         message("Inverse cached already: Getting cached data")
         return(imat)
     }
-    data <- x$get() #query x to get stored matrix data
+    data <- cM$get() #query x to get stored matrix data
     imat <- solve(data, ...) #call solve to find inverse of square matrix
-    x$setinv(imat) #set inverse in cacheMatrix object
+    cM$setinv(imat) #set inverse in cacheMatrix object
     return(imat)  ##explicit return for clarity
 }
 
