@@ -38,8 +38,9 @@ makeCacheMatrix <- function(data = matrix()) {
     }
     get    <- function() data
     setinv <- function(ans) imat <<- ans #method takes ans (answer) as 
-                                         #input and stores in parent function 
-                                         #environment
+                                         #input and stores in parent 
+                                         #environment (the cacheMatrix
+                                         #list that is returned)
     getinv <- function() imat
     cacheMatrix <- list(set = set, get = get,
                    setinv = setinv,
